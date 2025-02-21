@@ -8,6 +8,21 @@ const initialState = {
   error: null,
 };
 
+const handlePending = state => {
+  state.loading = true;
+  state.error = null;
+};
+
+const handleFulfilled = state => {
+  state.loading = false;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.loading = false;
+  state.error = action.payload;
+};
+
 export const selectContacts = state => state.contacts.items;
 export const selectLoading = state => state.contacts.loading;
 export const selectError = state => state.contacts.error;
@@ -26,39 +41,24 @@ const slice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.pending, (state, action) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(fetchContacts.pending, handlePending)
       .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
         state.items = action.payload;
+        handleFulfilled(state);
       })
-      .addCase(fetchContacts.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(addContact.pending, (state, action) => {
-        state.error = null;
-      })
+      .addCase(fetchContacts.rejected, handleRejected)
+      .addCase(addContact.pending, handlePending)
       .addCase(addContact.fulfilled, (state, action) => {
-        state.error = null;
         state.items.push(action.payload);
+        handleFulfilled(state);
       })
-      .addCase(addContact.rejected, (state, action) => {
-        state.error = action.payload;
-      })
-      .addCase(deleteContact.pending, (state, action) => {
-        state.error = null;
-      })
+      .addCase(addContact.rejected, handleRejected)
+      .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(item => item.id !== action.payload);
-        state.error = null;
+        handleFulfilled(state);
       })
-      .addCase(deleteContact.rejected, (state, action) => {
-        state.error = action.payload;
-      });
+      .addCase(deleteContact.rejected, handleRejected);
   },
 });
 
