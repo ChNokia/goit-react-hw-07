@@ -1,0 +1,26 @@
+.searchField {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 4px;
+  width: var(--container-width);
+}
+
+.searchInput {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  height: 40px;
+  padding: 8px 16px;
+  width: 100%;
+  outline: none;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.searchInput:hover {
+  border: 1px solid #000;
+}

@@ -1,0 +1,48 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-width: 350px;
+
+  border: 2px solid #808080;
+  border-radius: 8px;
+  box-shadow: 0 2px 1px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 1px 6px 0 rgba(46, 47, 66, 0.08);
+  background-color: ghostwhite;
+}
+
+.dataDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.btn {
+  border: transparent;
+  border-radius: 8px;
+  padding: 8px 16px;
+  min-width: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #ed3b44;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fafafa;
+
+  transition: background-color 250ms ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #e0373f;
+}
